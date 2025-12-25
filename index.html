@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz Navidad 🎄</title>
+<title> Feliz Navidad 🎄</title>
 
 <!-- Fuentes elegantes -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -295,7 +295,7 @@
 </div>
 
 <div class="controls">
-  <button onclick="cambiarMensaje()">🎁 Mensaje Clásico</button>
+  <!-- Only one button remains -->
   <button class="primary" onclick="mostrarNacimiento()">🌠 Ver Nacimiento</button>
 </div>
 
@@ -310,7 +310,7 @@
 </div>
 
 <script>
-// --- LÓGICA DE MENSAJES ---
+// --- LÓGICA DE MENSAJES AUTOMÁTICOS ---
 const mensajes = [
   "✨ Que esta Navidad esté llena de esperanza y amor ✨",
   "🎁 Que los pequeños gestos iluminen grandes corazones 🎁",
@@ -323,10 +323,15 @@ function cambiarMensaje() {
   const msg = document.getElementById("mensaje");
   msg.style.opacity = 0;
   setTimeout(() => {
-    msg.textContent = mensajes[Math.floor(Math.random() * mensajes.length)];
+    // Select a random message different from current if possible
+    let nuevoMensaje = mensajes[Math.floor(Math.random() * mensajes.length)];
+    msg.textContent = nuevoMensaje;
     msg.style.opacity = 1;
-  }, 300);
+  }, 500); // Wait for fade out
 }
+
+// Cambiar mensaje automáticamente cada 5 segundos
+setInterval(cambiarMensaje, 5000);
 
 // --- LÓGICA DE AUDIO (Automático al primer clic) ---
 const audio = document.getElementById('bgMusic');
