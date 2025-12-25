@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Navidad 🎄</title>
+
+<!-- Fuentes elegantes -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --tree-light: #2d8a55;
+        --tree-dark: #1a5e3a;
+        --gold: #ffd700;
+        --red: #d62828;
+        --blue: #00b4d8;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: radial-gradient(circle at top, #102542, #06121f);
+        color: white;
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+        text-align: center;
+        padding-top: 40px;
+        z-index: 2;
+    }
+
+    header h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 3.5rem;
+        margin: 0;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        color: var(--gold);
+    }
+
+    header p {
+        font-family: 'Playfair Display', serif;
+        opacity: 0.9;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        margin-top: 5px;
+    }
+
+    /* ---------- ÁRBOL ORGÁNICO ---------- */
+    .tree-container {
+        position: relative;
+        height: 400px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 2;
+        margin-bottom: 10px;
+        /* Sombra suave para dar profundidad */
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    }
+
+    .branch-layer {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(180deg, var(--tree-light), var(--tree-dark));
+        /* Forma redondeada orgánica */
+        border-radius: 50% 50% 50% 50% / 100% 100% 20% 20%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        z-index: 2;
+    }
+
+    .layer-1 { bottom: 40px; width: 260px; height: 120px; z-index: 2; }
+    .layer-2 { bottom: 110px; width: 200px; height: 100px; z-index: 3; }
+    .layer-3 { bottom: 180px; width: 140px; height: 80px; z-index: 4; }
+    .layer-4 { bottom: 240px; width: 80px; height: 60px; z-index: 5; }
+
+    .trunk {
+        width: 50px;
+        height: 60px;
+        background: linear-gradient(90deg, #4a3b32, #2c241b);
+        border-radius: 5px;
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    /* Estrella Helicoidal */
+    .star-wrapper {
+        position: absolute;
+        bottom: 290px;
+        z-index: 10;
+        perspective: 600px;
+    }
+
+    .star {
+        font-size: 3.5rem;
+        color: var(--gold);
+        filter: drop-shadow(0 0 15px var(--gold));
+        display: block;
+        transform-style: preserve-3d;
+        animation: helical-spin 4s infinite linear;
+    }
+
+    @keyframes helical-spin {
+        0% { transform: rotateY(0deg) translateY(0); }
+        25% { transform: rotateY(90deg) translateY(-5px); }
+        50% { transform: rotateY(180deg) translateY(0); }
+        75% { transform: rotateY(270deg) translateY(5px); }
+        100% { transform: rotateY(360deg) translateY(0); }
+    }
+
+    /* Adornos brillantes */
+    .ornament {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        z-index: 6;
+        animation: glow-pulse 2s infinite alternate;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    .ornament.red { background: radial-gradient(circle at 30% 30%, #fff, var(--red)); }
+    .ornament.gold { background: radial-gradient(circle at 30% 30%, #fff, var(--gold)); }
+    .ornament.blue { background: radial-gradient(circle at 30% 30%, #fff, var(--blue)); }
+
+    @keyframes glow-pulse {
+        from { filter: brightness(100%); transform: scale(1); }
+        to { filter: brightness(140%); transform: scale(1.15); box-shadow: 0 0 15px currentColor; }
+    }
+
+    /* ---------- MENSAJE ---------- */
+    .message {
+        text-align: center;
+        font-size: 1.2rem;
+        padding: 0 20px;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Playfair Display', serif;
+        color: #ffecd1;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        z-index: 2;
+        max-width: 800px;
+    }
+
+    /* ---------- CONTROLES ---------- */
+    .controls {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+        z-index: 2;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    button {
+        padding: 12px 25px;
+        border-radius: 50px;
+        border: 1px solid rgba(255,255,255,0.3);
+        font-size: 1rem;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        backdrop-filter: blur(5px);
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    button:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-3px);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        border-color: white;
+    }
+    
+    button.primary {
+        background: linear-gradient(135deg, #e63946, #d62828);
+        border: none;
+    }
+
+    /* Nieve */
+    .snowflake {
+        position: fixed;
+        top: -20px;
+        color: white;
+        user-select: none;
+        z-index: 1;
+        pointer-events: none;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    /* ---------- NACIMIENTO OVERLAY ---------- */
+    #nacimiento {
+        position: fixed;
+        inset: 0;
+        background: black;
+        display: none;
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    #nacimiento.active {
+        display: block;
+        opacity: 1;
+    }
+
+    #nativityCanvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    #cerrar {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 2.5rem;
+        cursor: pointer;
+        color: rgba(255,255,255,0.7);
+        z-index: 10001;
+        transition: color 0.3s;
+    }
+    #cerrar:hover { color: white; }
+
+    footer {
+        font-size: 0.8rem;
+        opacity: 0.6;
+        padding-bottom: 20px;
+        z-index: 2;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- 
+    IMPORTANTE PARA GITHUB:
+    Sube tu archivo de audio junto a este archivo y asegúrate
+    de que se llame EXACTAMENTE "cancion.mp3"
+-->
+<audio id="bgMusic" loop>
+    <source src="cancion.mp3" type="audio/mp3">
+</audio>
+
+<header>
+  <h1>Feliz Navidad</h1>
+  <p>Que la paz y la luz habiten tu corazón</p>
+</header>
+
+<div class="tree-container">
+    <div class="star-wrapper">
+        <div class="star">🌟</div>
+    </div>
+
+    <div class="branch-layer layer-4"></div>
+    <div class="branch-layer layer-3">
+        <div class="ornament gold" style="bottom: 20px; left: 30%;"></div>
+        <div class="ornament red" style="bottom: 40px; left: 70%;"></div>
+    </div>
+    <div class="branch-layer layer-2">
+        <div class="ornament blue" style="bottom: 30px; left: 20%;"></div>
+        <div class="ornament gold" style="bottom: 50px; left: 50%;"></div>
+        <div class="ornament red" style="bottom: 25px; left: 80%;"></div>
+    </div>
+    <div class="branch-layer layer-1">
+        <div class="ornament red" style="bottom: 40px; left: 15%;"></div>
+        <div class="ornament blue" style="bottom: 60px; left: 40%;"></div>
+        <div class="ornament gold" style="bottom: 30px; left: 65%;"></div>
+        <div class="ornament blue" style="bottom: 50px; left: 85%;"></div>
+    </div>
+
+    <div class="trunk"></div>
+</div>
+
+<div class="message" id="mensaje">
+  ✨ Que esta Navidad esté llena de esperanza y amor ✨
+</div>
+
+<div class="controls">
+  <button onclick="cambiarMensaje()">🎁 Mensaje Clásico</button>
+  <button class="primary" onclick="mostrarNacimiento()">🌠 Ver Nacimiento</button>
+</div>
+
+<footer>
+  Hecho con ❤️ para compartir
+</footer>
+
+<!-- FULLSCREEN ANIMATION -->
+<div id="nacimiento">
+  <div id="cerrar" onclick="cerrarNacimiento()">✖</div>
+  <canvas id="nativityCanvas"></canvas>
+</div>
+
+<script>
+// --- LÓGICA DE MENSAJES ---
+const mensajes = [
+  "✨ Que esta Navidad esté llena de esperanza y amor ✨",
+  "🎁 Que los pequeños gestos iluminen grandes corazones 🎁",
+  "🌟 Que nunca te falte luz en los días oscuros 🌟",
+  "❄️ Descansa, agradece y confía en lo que viene ❄️",
+  "❤️ El mejor regalo es compartir con quienes amas ❤️"
+];
+
+function cambiarMensaje() {
+  const msg = document.getElementById("mensaje");
+  msg.style.opacity = 0;
+  setTimeout(() => {
+    msg.textContent = mensajes[Math.floor(Math.random() * mensajes.length)];
+    msg.style.opacity = 1;
+  }, 300);
+}
+
+// --- LÓGICA DE AUDIO (Automático al primer clic) ---
+const audio = document.getElementById('bgMusic');
+audio.volume = 0.5;
+
+// Loop solo los primeros 15 segundos
+audio.addEventListener('timeupdate', function() {
+    if (this.currentTime >= 15) {
+        this.currentTime = 0;
+        this.play();
+    }
+});
+
+// Función para intentar reproducir
+const startMusic = () => {
+    audio.play().then(() => {
+        // Si funciona, quitamos los "escuchas" para no intentar de nuevo
+        document.removeEventListener('click', startMusic);
+        document.removeEventListener('touchstart', startMusic);
+    }).catch(e => {
+        console.log("Esperando interacción del usuario para reproducir audio...");
+    });
+};
+
+// Intentamos reproducir al cargar y al primer clic en cualquier sitio
+document.addEventListener('click', startMusic);
+document.addEventListener('touchstart', startMusic);
+startMusic();
+
+
+// --- NIEVE ---
+function crearNieve() {
+  const snow = document.createElement("div");
+  snow.className = "snowflake";
+  snow.textContent = Math.random() > 0.5 ? "❄" : "•";
+  snow.style.left = Math.random() * window.innerWidth + "px";
+  snow.style.fontSize = 10 + Math.random() * 20 + "px";
+  snow.style.opacity = Math.random();
+  snow.style.animationDuration = 3 + Math.random() * 5 + "s";
+  document.body.appendChild(snow);
+
+  setTimeout(() => snow.remove(), 8000);
+}
+setInterval(crearNieve, 200);
+
+
+// --- ANIMACIÓN DEL NACIMIENTO ---
+const overlay = document.getElementById("nacimiento");
+const canvas = document.getElementById("nativityCanvas");
+const ctx = canvas.getContext("2d");
+let animationId;
+let width, height;
+let stars = [];
+let startTime = null;
+
+function mostrarNacimiento() {
+    overlay.classList.add('active');
+    resizeCanvas();
+    initStars();
+    startTime = null; 
+    
+    // Aseguramos que la música suene si no ha empezado
+    if(audio.paused) startMusic();
+    
+    cancelAnimationFrame(animationId);
+    animate(performance.now());
+}
+
+function cerrarNacimiento() {
+    overlay.classList.remove('active');
+    cancelAnimationFrame(animationId);
+}
+
+function resizeCanvas() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+}
+window.addEventListener('resize', () => {
+    if (overlay.classList.contains('active')) {
+        resizeCanvas();
+        initStars();
+    }
+});
+
+class Star {
+    constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * (height * 0.65); 
+        this.size = Math.random() * 2.5;
+        this.blinkSpeed = 0.01 + Math.random() * 0.03;
+        this.alpha = Math.random();
+        this.direction = 1;
+    }
+    update() {
+        this.alpha += this.blinkSpeed * this.direction;
+        if (this.alpha > 1) { this.alpha = 1; this.direction = -1; }
+        if (this.alpha < 0.2) { this.alpha = 0.2; this.direction = 1; }
+    }
+    draw() {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+function initStars() {
+    stars = [];
+    for(let i = 0; i < 200; i++) stars.push(new Star());
+}
+
+// Dibujo de Elementos
+function drawGround() {
+    const gradient = ctx.createLinearGradient(0, height * 0.6, 0, height);
+    gradient.addColorStop(0, "#0a0500");
+    gradient.addColorStop(0.5, "#1a0f05");
+    gradient.addColorStop(1, "#050200");
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.moveTo(0, height);
+    ctx.lineTo(0, height * 0.7);
+    ctx.bezierCurveTo(width * 0.2, height * 0.65, width * 0.4, height * 0.75, width * 0.5, height * 0.72);
+    ctx.bezierCurveTo(width * 0.6, height * 0.68, width * 0.8, height * 0.65, width, height * 0.7);
+    ctx.lineTo(width, height);
+    ctx.fill();
+}
+
+function drawStable(opacity) {
+    const centerX = width / 2;
+    const groundY = height * 0.72;
+    const stableWidth = Math.min(380, width * 0.85);
+    const stableHeight = 220;
+
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    
+    ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+    ctx.beginPath();
+    ctx.ellipse(centerX, groundY, stableWidth/2.2, 20, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    const woodGrad = ctx.createLinearGradient(centerX - stableWidth/2, groundY - stableHeight, centerX + stableWidth/2, groundY);
+    woodGrad.addColorStop(0, "#3e2723");
+    woodGrad.addColorStop(1, "#3e2723");
+
+    ctx.strokeStyle = woodGrad;
+    ctx.lineWidth = 14;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    ctx.beginPath();
+    ctx.moveTo(centerX - stableWidth/2 - 20, groundY - stableHeight * 0.5);
+    ctx.lineTo(centerX, groundY - stableHeight);
+    ctx.lineTo(centerX + stableWidth/2 + 20, groundY - stableHeight * 0.5);
+    ctx.stroke();
+
+    ctx.lineWidth = 12;
+    ctx.beginPath();
+    ctx.moveTo(centerX - stableWidth/2 + 30, groundY - stableHeight * 0.55);
+    ctx.lineTo(centerX - stableWidth/2 + 30, groundY);
+    ctx.moveTo(centerX + stableWidth/2 - 30, groundY - stableHeight * 0.55);
+    ctx.lineTo(centerX + stableWidth/2 - 30, groundY);
+    ctx.stroke();
+
+    ctx.restore();
+}
+
+function drawJoseph(x, y, opacity) {
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    const robeGrad = ctx.createLinearGradient(x - 20, y - 100, x + 20, y);
+    robeGrad.addColorStop(0, "#4e342e");
+    robeGrad.addColorStop(1, "#281915");
+    ctx.fillStyle = robeGrad;
+    ctx.beginPath();
+    ctx.moveTo(x + 25, y); 
+    ctx.lineTo(x - 20, y);
+    ctx.quadraticCurveTo(x - 25, y - 60, x - 15, y - 90);
+    ctx.quadraticCurveTo(x - 5, y - 110, x + 15, y - 95);
+    ctx.quadraticCurveTo(x + 30, y - 60, x + 25, y);
+    ctx.fill();
+    ctx.strokeStyle = "#1a100d";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(x + 20, y);
+    ctx.lineTo(x + 25, y - 110);
+    ctx.stroke();
+    ctx.restore();
+}
+
+function drawMary(x, y, opacity) {
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    const robeGrad = ctx.createLinearGradient(x - 20, y - 80, x + 20, y);
+    robeGrad.addColorStop(0, "#1a237e");
+    robeGrad.addColorStop(1, "#0d1b40");
+    ctx.fillStyle = robeGrad;
+    ctx.beginPath();
+    ctx.moveTo(x + 30, y); 
+    ctx.lineTo(x - 20, y);
+    ctx.quadraticCurveTo(x - 30, y - 40, x - 15, y - 70);
+    ctx.quadraticCurveTo(x, y - 85, x + 15, y - 70);
+    ctx.quadraticCurveTo(x + 20, y - 50, x + 30, y);
+    ctx.fill();
+    ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+    ctx.beginPath();
+    ctx.arc(x, y - 65, 12, 0, Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+}
+
+function drawMangerAndBaby(opacity) {
+    const centerX = width / 2;
+    const groundY = height * 0.72;
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    ctx.strokeStyle = "#3e2723";
+    ctx.lineWidth = 5;
+    ctx.beginPath();
+    ctx.moveTo(centerX - 35, groundY - 25);
+    ctx.lineTo(centerX - 15, groundY);
+    ctx.moveTo(centerX - 15, groundY - 25);
+    ctx.lineTo(centerX - 35, groundY);
+    ctx.moveTo(centerX + 35, groundY - 25);
+    ctx.lineTo(centerX + 15, groundY);
+    ctx.moveTo(centerX + 15, groundY - 25);
+    ctx.lineTo(centerX + 35, groundY);
+    ctx.stroke();
+    ctx.fillStyle = "#5d4037";
+    ctx.beginPath();
+    ctx.moveTo(centerX - 40, groundY - 40);
+    ctx.quadraticCurveTo(centerX, groundY - 15, centerX + 40, groundY - 40);
+    ctx.lineTo(centerX + 40, groundY - 20);
+    ctx.quadraticCurveTo(centerX, groundY + 5, centerX - 40, groundY - 20);
+    ctx.fill();
+    ctx.fillStyle = "#ffb300";
+    ctx.beginPath();
+    ctx.ellipse(centerX, groundY - 40, 35, 10, 0, 0, Math.PI * 2);
+    ctx.fill();
+    const clothGrad = ctx.createRadialGradient(centerX, groundY - 45, 2, centerX, groundY - 45, 20);
+    clothGrad.addColorStop(0, "#ffffff");
+    clothGrad.addColorStop(1, "#e0e0e0");
+    ctx.fillStyle = clothGrad;
+    ctx.beginPath();
+    ctx.ellipse(centerX, groundY - 45, 15, 8, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#ffccbc";
+    ctx.beginPath();
+    ctx.arc(centerX - 8, groundY - 47, 7, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 30;
+    ctx.shadowColor = "rgba(255, 255, 200, 0.6)";
+    ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
+    ctx.beginPath();
+    ctx.arc(centerX, groundY - 45, 25, 0, Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+}
+
+function drawMainStar(progress) {
+    const x = width / 2;
+    const y = height * 0.15;
+    let scale = progress < 1 ? Math.pow(progress, 0.5) : 1;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(scale, scale);
+    const gradient = ctx.createRadialGradient(0, 0, 2, 0, 0, 60);
+    gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+    gradient.addColorStop(1, "rgba(255, 215, 0, 0)");
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(0, 0, 60, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#FFFFF0";
+    ctx.shadowBlur = 20;
+    ctx.shadowColor = "#FFF";
+    ctx.beginPath();
+    for (let i = 0; i < 8; i++) {
+        ctx.rotate(Math.PI / 4);
+        ctx.moveTo(0, 0);
+        i % 2 === 0 ? ctx.lineTo(2, 2) : ctx.lineTo(2, 2);
+        i % 2 === 0 ? ctx.lineTo(0, 45) : ctx.lineTo(0, 20);
+        ctx.lineTo(-2, 2);
+        ctx.lineTo(0, 0);
+    }
+    ctx.fill();
+    ctx.restore();
+}
+
+function drawBeam(opacity) {
+    const topX = width / 2;
+    const topY = height * 0.15;
+    const bottomY = height * 0.72 - 40;
+    ctx.save();
+    ctx.globalAlpha = opacity * 0.6;
+    const grad = ctx.createLinearGradient(0, topY, 0, bottomY);
+    grad.addColorStop(0, "rgba(255, 255, 230, 0.9)");
+    grad.addColorStop(1, "rgba(255, 255, 200, 0)");
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(topX, topY);
+    ctx.lineTo(topX + 60, bottomY + 100);
+    ctx.lineTo(topX - 60, bottomY + 100);
+    ctx.fill();
+    ctx.restore();
+}
+
+function drawText(opacity) {
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    ctx.fillStyle = "#FFF";
+    const fontSize = Math.min(width * 0.05, 40); 
+    ctx.font = `300 ${fontSize}px "Cinzel", "Times New Roman", serif`;
+    ctx.textAlign = "center";
+    ctx.shadowColor = "rgba(255, 215, 0, 0.9)";
+    ctx.shadowBlur = 15;
+    const text = "SU NACIMIENTO LO CAMBIÓ TODO";
+    const x = width / 2;
+    const y = height * 0.25;
+    ctx.fillText(text, x, y);
+    ctx.globalAlpha = opacity * 0.7;
+    ctx.beginPath();
+    ctx.moveTo(x - 100, y + 15);
+    ctx.lineTo(x + 100, y + 15);
+    ctx.strokeStyle = "rgba(255, 215, 0, 0.5)";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.restore();
+}
+
+function animate(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    const TOTAL_DURATION = 6000;
+
+    const bgGradient = ctx.createRadialGradient(width/2, height*0.2, width/10, width/2, height*0.8, width);
+    bgGradient.addColorStop(0, "#0d1b2a");
+    bgGradient.addColorStop(1, "#000000");
+    ctx.fillStyle = bgGradient;
+    ctx.fillRect(0, 0, width, height);
+
+    stars.forEach(star => { star.update(); star.draw(); });
+    drawGround();
+
+    let sceneOpacity = Math.min(1, elapsed / 1000);
+    drawStable(sceneOpacity);
+    drawJoseph(width/2 - 60, height * 0.72, sceneOpacity); 
+    drawMary(width/2 + 60, height * 0.72, sceneOpacity);
+    
+    if (elapsed > 500) drawMangerAndBaby(Math.min(1, (elapsed - 500) / 1000));
+    if (elapsed > 1500) drawMainStar(Math.min(1, (elapsed - 1500) / 1500));
+    if (elapsed > 2500) drawBeam(Math.min(1, (elapsed - 2500) / 1500));
+    if (elapsed > 4000) drawText(Math.min(1, (elapsed - 4000) / 1000));
+
+    if (overlay.classList.contains('active')) {
+        if (elapsed < TOTAL_DURATION) {
+            animationId = requestAnimationFrame(animate);
+        } else {
+            animationId = requestAnimationFrame(animate); 
+        }
+    }
+}
+</script>
+
+</body>
+</html>
