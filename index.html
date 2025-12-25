@@ -122,12 +122,12 @@
     /* Adornos brillantes */
     .ornament {
         position: absolute;
-        width: 14px;
+        width: 16px;
         height: 14px;
         border-radius: 50%;
         z-index: 6;
         animation: glow-pulse 2s infinite alternate;
-        box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
     
     .ornament.red { background: radial-gradient(circle at 30% 30%, #fff, var(--red)); }
@@ -312,11 +312,13 @@
 <script>
 // --- LÓGICA DE MENSAJES AUTOMÁTICOS ---
 const mensajes = [
-  "✨ Que esta Navidad esté llena de esperanza y amor ✨",
-  "🎁 Que los pequeños gestos iluminen grandes corazones 🎁",
-  "🌟 Que nunca te falte luz en los días oscuros 🌟",
+  "✨ Que esta Navidad esté llena de esperanza y amor ✨ (y si no, al menos de comida y cero discusiones familiares).",
+  "🎁 Que los pequeños gestos iluminen grandes corazones 🎁 (aunque sea responder los mensajes y no dejar en visto).",
+  "🌟 Que nunca te falte luz en los días oscuros 🌟 (ni Wi-Fi).",
   "❄️ Descansa, agradece y confía en lo que viene ❄️",
-  "❤️ El mejor regalo es compartir con quienes amas ❤️"
+  "❤️ El mejor regalo es compartir con quienes amas ❤️ (pero no el último pedazo de panetón, eso tiene límites).",
+    "🎄 Que la magia de la Navidad te alcance… incluso si solo aparece en forma de descanso y postre extra.",
+  "✨ Que esta Navidad te sorprenda ✨ (pero no con gastos inesperados ni mensajes raros)."
 ];
 
 function cambiarMensaje() {
@@ -700,3 +702,4 @@ function animate(timestamp) {
 
 </body>
 </html>
+
